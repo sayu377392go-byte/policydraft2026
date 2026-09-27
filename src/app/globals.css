@@ -1,0 +1,77 @@
+@import "tailwindcss";
+
+/* トップイメージの配色: 水色〜ティールのグラデーション、白基調のガラス風カード */
+:root {
+  --background: #f6fafc;
+  --foreground: #1f3446;
+  --muted: #eef5f8;
+  --muted-foreground: #5c7285;
+  --card: #ffffff;
+  --border: #dbe7ee;
+  --primary: #1a8fb0;
+  --primary-foreground: #ffffff;
+  --accent: #2bb39a;
+  --ring: #1a8fb0;
+  --radius: 0.9rem;
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-card: var(--card);
+  --color-border: var(--border);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-accent: var(--accent);
+  --color-ring: var(--ring);
+  --radius-lg: var(--radius);
+  --font-sans: var(--font-noto-sans-jp), "Hiragino Sans", "Yu Gothic", sans-serif;
+  --font-display: var(--font-zen-old-mincho), "Hiragino Mincho ProN", serif;
+  --font-script: var(--font-caveat), cursive;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+}
+
+@layer utilities {
+  .text-gradient {
+    background: linear-gradient(100deg, #1f8fb5 0%, #22a6a0 55%, #3bb68f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .bg-brand-gradient {
+    background: linear-gradient(100deg, #36b49a 0%, #1f9bbf 100%);
+  }
+  .glass {
+    background: rgba(255, 255, 255, 0.62);
+    border: 1px solid rgba(255, 255, 255, 0.85);
+    box-shadow: 0 10px 30px -12px rgba(31, 110, 150, 0.35);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  .hero-sky {
+    background:
+      radial-gradient(1200px 500px at 50% -10%, rgba(255, 255, 255, 0.95), transparent 60%),
+      radial-gradient(800px 400px at 15% 80%, rgba(143, 214, 196, 0.45), transparent 60%),
+      radial-gradient(800px 400px at 85% 70%, rgba(126, 196, 232, 0.45), transparent 60%),
+      linear-gradient(180deg, #dff0fa 0%, #eaf6f6 55%, #f6fafc 100%);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0) rotate(var(--tilt, 0deg)); }
+  50% { transform: translateY(-8px) rotate(var(--tilt, 0deg)); }
+}
+.animate-float {
+  animation: float 7s ease-in-out infinite;
+}
+@media (prefers-reduced-motion: reduce) {
+  .animate-float { animation: none; }
+}
