@@ -11,6 +11,7 @@ export async function POST(request: NextRequest) {
 
   const session = await getStripe().billingPortal.sessions.create({
     customer,
+    configuration: process.env.STRIPE_PORTAL_CONFIGURATION || undefined,
     return_url: `${origin}/politician/plan`,
     locale: "ja",
   });

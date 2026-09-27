@@ -3,6 +3,9 @@ import { ArrowRight } from "lucide-react";
 import { TagIcon } from "@/components/tag-icon";
 import { cn } from "@/lib/utils";
 
+/** ヒーロー背景。public/ に写真を置いてパスを変えれば差し替えられる */
+const HERO_BACKGROUND = "/hero-city.svg";
+
 type Voice = { category: string; iconTag: string; body: string; who: string; tag: string };
 
 /** トップイメージのヒーローに浮かぶ「市民の声」カード(イメージ用の例文) */
@@ -34,8 +37,15 @@ function VoiceCard({ v, className, style }: { v: Voice; className?: string; styl
 export function Hero() {
   return (
     <section className="hero-sky relative overflow-hidden">
-      {/* 背景のぼかした街並みの代わりに、柔らかい光の円を重ねる */}
+      {/* 背景: ぼかした街並み(仮のイラスト)。写真に差し替える場合は HERO_BACKGROUND を変更する */}
       <div className="pointer-events-none absolute inset-0" aria-hidden>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={HERO_BACKGROUND}
+          alt=""
+          className="absolute inset-x-0 bottom-0 h-[85%] w-full scale-105 object-cover object-bottom opacity-70 blur-[3px]"
+        />
+        <div className="absolute inset-0 bg-gradient-to-b from-white/70 via-white/20 to-white/40" />
         <div className="absolute left-1/2 top-[55%] h-72 w-72 -translate-x-1/2 rounded-full bg-white/60 blur-3xl" />
         <svg className="absolute inset-0 h-full w-full" viewBox="0 0 1200 640" preserveAspectRatio="none" fill="none">
           <path d="M600 420 C 450 360, 380 250, 250 220" stroke="url(#flow)" strokeWidth="2" />

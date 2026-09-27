@@ -28,6 +28,12 @@ export function SiteFooter() {
           <Link href="/privacy" className="text-slate-600 hover:text-primary">
             プライバシーポリシー
           </Link>
+          <Link href="/terms" className="text-slate-600 hover:text-primary">
+            利用規約
+          </Link>
+          <Link href="/tokushoho" className="text-slate-600 hover:text-primary">
+            特定商取引法に基づく表記
+          </Link>
         </nav>
       </div>
       <p className="border-t border-border py-4 text-center text-xs text-muted-foreground">

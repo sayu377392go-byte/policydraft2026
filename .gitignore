@@ -41,3 +41,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 /prisma/*.db*
+
+# Supabase CLI / Vercel CLI
+/supabase/.temp
+/supabase/.branches
+.vercel

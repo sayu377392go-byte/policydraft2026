@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import { Check, CreditCard, Landmark } from "lucide-react";
 import { SubscriptionBadge } from "@/components/subscription-badge";
@@ -82,6 +83,13 @@ export default async function PlanPage({ searchParams }: { searchParams: Promise
                 );
               })}
             </div>
+          )}
+
+          {!active && (
+            <p className="mt-4 text-xs text-muted-foreground">
+              お申し込みにより、<Link href="/terms" className="underline">利用規約</Link>と
+              <Link href="/tokushoho" className="underline">特定商取引法に基づく表記</Link>の内容に同意したものとみなします。
+            </p>
           )}
 
           {sub?.payment_method === "bank_transfer" && sub.bank_transfer_code && !active && (

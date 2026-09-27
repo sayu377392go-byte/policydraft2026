@@ -98,7 +98,8 @@ export function StudentSignupForm() {
       <label className="flex items-start gap-2 text-sm">
         <input type="checkbox" name="agree" required className="mt-1" />
         <span>
-          <Link href="/guidelines" className="text-primary underline">ガイドライン</Link>と
+          <Link href="/terms" className="text-primary underline">利用規約</Link>・
+          <Link href="/guidelines" className="text-primary underline">ガイドライン</Link>・
           <Link href="/privacy" className="text-primary underline">プライバシーポリシー</Link>に同意します
         </span>
       </label>

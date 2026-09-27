@@ -28,33 +28,14 @@ npm run dev
 
 ## 本番構成のセットアップ
 
-### 1. Supabase
+Supabase・Stripe・Vercel の設定は、スクリプトでまとめて実行できます。手順は [docs/DEPLOY.md](docs/DEPLOY.md) にあります。
 
-1. [Supabase](https://supabase.com) でプロジェクトを作成
-2. SQL Editor で次の順に実行(または Supabase CLI で `supabase db push`)
-   1. `supabase/migrations/20260927000000_init.sql`(テーブル・RLS・Storage バケット)
-   2. `supabase/seed.sql`(政党・政策分野タグのマスター。末尾の架空データは不要なら削除)
-3. Authentication → URL Configuration で Site URL と Redirect URL(`https://<ドメイン>/auth/callback`)を設定
-4. 最初の管理者を作る: サイトで通常登録したあと、SQL Editor で
-   ```sql
-   update public.profiles set role = 'admin'
-   where id = (select id from auth.users where email = 'admin@example.com');
-   ```
-
-### 2. Stripe
-
-1. 商品「公式回答プラン」を作り、Price を 2 つ作成
-   - 月額 4,400円(税込)/ 毎月
-   - 年額 50,000円(税込)/ 毎年
-2. Customer Portal を有効化(解約・カード変更・請求書の閲覧を許可)
-3. Webhook エンドポイント `https://<ドメイン>/api/stripe/webhook` を追加し、次のイベントを選択
-   - `checkout.session.completed`
-   - `customer.subscription.created` / `updated` / `deleted`
-4. ローカルでは `stripe listen --forward-to localhost:3000/api/stripe/webhook`
-
-### 3. 環境変数
-
-`.env.example` を `.env.local` にコピーして値を入れます。Vercel などにデプロイする場合も同じ変数を設定してください。
+| スクリプト | 内容 |
+| --- | --- |
+| `scripts/setup/supabase.sh` | マイグレーション・seed・認証設定を反映し、API キーを書き出す |
+| `scripts/setup/stripe.mts` | 商品・価格・Webhook・カスタマーポータル設定を作成する |
+| `scripts/setup/vercel-env.sh` | 環境変数を Vercel に登録する |
+| `scripts/setup/make-admin.mts` | 登録済みユーザーを管理者にする |
 
 ## 画面一覧
 
@@ -98,6 +79,7 @@ npm run build        # 本番ビルド
 npm run lint         # ESLint
 npm run typecheck    # 型チェック
 npm run db:seed-sql  # src/lib/demo-data.ts と定数から supabase/seed.sql を再生成
+./scripts/test-rls.sh # RLS テスト(ローカル PostgreSQL が必要。CI でも実行)
 ```
 
 ## 要件定義書から補った点
@@ -115,8 +97,8 @@ npm run db:seed-sql  # src/lib/demo-data.ts と定数から supabase/seed.sql �
 
 ## 今後の対応が必要なもの
 
-- ガイドライン・プライバシーポリシー・利用規約の本文(現在は仮の文面)と、特定商取引法に基づく表記(有料プランがあるため必要)
+- `src/lib/legal.ts` の【要記入】(事業者名・所在地・電話番号など)、利用規約(ドラフト)とプライバシーポリシーの専門家確認
 - 政党カラーの最終決定(`src/lib/constants.ts`)
 - メール通知(政治家から回答が来たときなど)。現状は Supabase Auth の確認メールのみ
-- LP ヒーローの背景写真(トップイメージの街並み写真に相当する素材)
+- LP ヒーローの背景写真(現在は仮のイラスト `public/hero-city.svg`。`src/components/hero.tsx` の `HERO_BACKGROUND` で差し替え)
 - 選挙区マスター(現在は自由入力)

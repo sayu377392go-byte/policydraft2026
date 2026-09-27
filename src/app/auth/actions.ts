@@ -39,7 +39,7 @@ const studentSchema = z.object({
   faculty: z.string().trim().max(60).optional(),
   grade: z.string().trim().max(20).optional(),
   nickname: z.string().trim().max(30).optional(),
-  agree: z.literal("on", { message: "利用規約とプライバシーポリシーへの同意が必要です" }),
+  agree: z.literal("on", { message: "利用規約・ガイドライン・プライバシーポリシーへの同意が必要です" }),
 });
 
 export async function signUpStudent(_: AuthState, formData: FormData): Promise<AuthState> {
