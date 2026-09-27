@@ -26,7 +26,7 @@ lines.push("insert into public.subscriptions (politician_id) select id from publ
 
 for (const d of demoDrafts) {
   lines.push(
-    `insert into public.policy_drafts (id, slug, title, summary, body, tag_id, published_at) values (${q(d.id)}, ${q(d.slug)}, ${q(d.title)}, ${q(d.summary)}, ${q(d.body)}, (select id from public.tags where name = ${q(d.tag)}), ${q(d.published_at)}) on conflict (id) do nothing;`,
+    `insert into public.policy_drafts (id, slug, title, summary, body, image_url, tag_id, published_at) values (${q(d.id)}, ${q(d.slug)}, ${q(d.title)}, ${q(d.summary)}, ${q(d.body)}, ${q(d.image_url)}, (select id from public.tags where name = ${q(d.tag)}), ${q(d.published_at)}) on conflict (id) do nothing;`,
   );
 }
 lines.push("");

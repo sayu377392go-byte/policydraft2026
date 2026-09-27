@@ -36,6 +36,7 @@ Supabase・Stripe・Vercel の設定は、スクリプトでまとめて実行�
 | `scripts/setup/stripe.mts` | 商品・価格・Webhook・カスタマーポータル設定を作成する |
 | `scripts/setup/vercel-env.sh` | 環境変数を Vercel に登録する |
 | `scripts/setup/make-admin.mts` | 登録済みユーザーを管理者にする |
+| `npm run images:generate` | サイト掲載用の画像を OpenAI の画像生成 API で作る(`OPENAI_API_KEY` が必要) |
 
 ## 画面一覧
 
@@ -100,5 +101,5 @@ npm run db:seed-sql  # src/lib/demo-data.ts と定数から supabase/seed.sql �
 - `src/lib/legal.ts` の【要記入】(事業者名・所在地・電話番号など)、利用規約(ドラフト)とプライバシーポリシーの専門家確認
 - 政党カラーの最終決定(`src/lib/constants.ts`)
 - メール通知(政治家から回答が来たときなど)。現状は Supabase Auth の確認メールのみ
-- LP ヒーローの背景写真(現在は仮のイラスト `public/hero-city.svg`。`src/components/hero.tsx` の `HERO_BACKGROUND` で差し替え)
+- サイト画像の生成(`npm run images:generate`)。未生成の間、ヒーロー背景は仮のイラスト `public/hero-city.svg`、政策ドラフトはアイコン付きのグラデーションで表示されます
 - 選挙区マスター(現在は自由入力)

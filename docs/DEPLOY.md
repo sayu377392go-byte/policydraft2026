@@ -74,14 +74,26 @@ BANK_ACCOUNT_NUMBER=1234567
 BANK_ACCOUNT_HOLDER=カ)セイサクドラフト
 ```
 
-## 5. Vercel に環境変数を登録してデプロイ
+## 5. サイト掲載用の画像を生成する(OpenAI)
+
+ヒーロー背景・政策ドラフトのサムネイル・OGP 画像を OpenAI の画像生成 API で作り、リポジトリにコミットします。
+
+```bash
+export OPENAI_API_KEY=sk-...
+npm run images:generate      # public/images/*.webp と src/lib/site-images.ts を更新
+git add public/images src/lib/site-images.ts && git commit -m "サイト画像を生成" && git push
+```
+
+プロンプトは `scripts/generate-images.mts` の中にあります。作り直す場合は `-- --force`、1 枚だけ作り直す場合は `-- hero` のように名前を指定します。
+
+## 6. Vercel に環境変数を登録してデプロイ
 
 ```bash
 ./scripts/setup/vercel-env.sh .env.production.local
 npx vercel deploy --prod
 ```
 
-## 6. 管理者アカウントを作る
+## 7. 管理者アカウントを作る
 
 1. 本番サイトの `/signup` から管理者にする人が登録し、確認メールのリンクを開きます。
 2. 次のコマンドで管理者にします。
@@ -91,7 +103,7 @@ npx vercel deploy --prod
    ```
 3. ログインするとヘッダーに「管理画面」が表示されます。
 
-## 7. 公開前チェック
+## 8. 公開前チェック
 
 - [ ] トップのデモバナー(「デモモードで表示しています」)が消えている(= Supabase に接続できている)
 - [ ] 学生登録 → 確認メール → ログイン → 目安箱に投稿できる

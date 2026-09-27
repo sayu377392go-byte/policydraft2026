@@ -2,6 +2,7 @@
  * デモモード用データ(すべて架空)。
  * Supabase 未設定時の画面表示と、supabase/seed.sql の元データを兼ねる。
  */
+import { SITE_IMAGES } from "./site-images";
 import type { Author, Notice, Politician, PolicyDraft, Post } from "./types";
 
 type DemoPolitician = Politician;
@@ -245,7 +246,7 @@ export const demoDrafts: PolicyDraft[] = [
     title: "若者の住まい支援に関する政策ドラフト",
     summary: "家賃負担が重い10〜20代の一人暮らしを後押しするため、家賃補助と公的住宅の活用を提案します。",
     body: "## 背景\n目安箱には「家賃が高くて一人暮らしを始められない」という声が多く寄せられています。\n\n## 提案\n- 29歳以下の単身者への家賃補助\n- 空き公営住宅の若者向け開放\n- 敷金・礼金の立替制度\n\n## 期待される効果\n若者の自立と、地域への定着を促します。",
-    image_url: null,
+    image_url: SITE_IMAGES["draft-youth-housing"] ?? null,
     tag: "若者参画",
     published_at: daysAgo(36),
   },
@@ -255,7 +256,7 @@ export const demoDrafts: PolicyDraft[] = [
     title: "地方の交通インフラ強化に関する政策ドラフト",
     summary: "通学・通院に欠かせない地方のバス・鉄道を守るため、国と自治体の支援の仕組みを整えます。",
     body: "## 背景\n地方ではバスの減便が進み、通学に片道2時間かかる例もあります。\n\n## 提案\n- 地域交通の運行費への国の支援拡充\n- デマンド交通の導入支援\n- 学生定期の割引拡大",
-    image_url: null,
+    image_url: SITE_IMAGES["draft-local-transport"] ?? null,
     tag: "地方創生",
     published_at: daysAgo(38),
   },
@@ -265,7 +266,7 @@ export const demoDrafts: PolicyDraft[] = [
     title: "教育の機会均等に関する政策ドラフト",
     summary: "家庭の経済状況に関わらず学び続けられるよう、学費と奨学金制度を見直します。",
     body: "## 提案\n- 大学授業料の段階的な負担軽減\n- 所得連動型奨学金返還の対象拡大\n- 学び直し(リカレント教育)の無償化",
-    image_url: null,
+    image_url: SITE_IMAGES["draft-education-equality"] ?? null,
     tag: "教育・子育て",
     published_at: daysAgo(40),
   },
@@ -275,7 +276,7 @@ export const demoDrafts: PolicyDraft[] = [
     title: "再生可能エネルギーの普及に関する政策ドラフト",
     summary: "地域に仕事を生む再生可能エネルギーの導入を、若い世代の雇用とセットで進めます。",
     body: "## 提案\n- 地域主導の再エネ事業への出資支援\n- 再エネ関連の職業訓練の無償化\n- 送電網の整備前倒し",
-    image_url: null,
+    image_url: SITE_IMAGES["draft-renewable-energy"] ?? null,
     tag: "環境・エネルギー",
     published_at: daysAgo(43),
   },

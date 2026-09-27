@@ -39,7 +39,7 @@ on conflict (id) do nothing;
 
 insert into public.subscriptions (politician_id) select id from public.politicians on conflict do nothing;
 
-insert into public.policy_drafts (id, slug, title, summary, body, tag_id, published_at) values ('00000000-0000-4000-8000-000000000301', 'youth-housing', '若者の住まい支援に関する政策ドラフト', '家賃負担が重い10〜20代の一人暮らしを後押しするため、家賃補助と公的住宅の活用を提案します。', '## 背景
+insert into public.policy_drafts (id, slug, title, summary, body, image_url, tag_id, published_at) values ('00000000-0000-4000-8000-000000000301', 'youth-housing', '若者の住まい支援に関する政策ドラフト', '家賃負担が重い10〜20代の一人暮らしを後押しするため、家賃補助と公的住宅の活用を提案します。', '## 背景
 目安箱には「家賃が高くて一人暮らしを始められない」という声が多く寄せられています。
 
 ## 提案
@@ -48,22 +48,22 @@ insert into public.policy_drafts (id, slug, title, summary, body, tag_id, publis
 - 敷金・礼金の立替制度
 
 ## 期待される効果
-若者の自立と、地域への定着を促します。', (select id from public.tags where name = '若者参画'), '2026-08-21T10:00:00.000Z') on conflict (id) do nothing;
-insert into public.policy_drafts (id, slug, title, summary, body, tag_id, published_at) values ('00000000-0000-4000-8000-000000000302', 'local-transport', '地方の交通インフラ強化に関する政策ドラフト', '通学・通院に欠かせない地方のバス・鉄道を守るため、国と自治体の支援の仕組みを整えます。', '## 背景
+若者の自立と、地域への定着を促します。', null, (select id from public.tags where name = '若者参画'), '2026-08-21T10:00:00.000Z') on conflict (id) do nothing;
+insert into public.policy_drafts (id, slug, title, summary, body, image_url, tag_id, published_at) values ('00000000-0000-4000-8000-000000000302', 'local-transport', '地方の交通インフラ強化に関する政策ドラフト', '通学・通院に欠かせない地方のバス・鉄道を守るため、国と自治体の支援の仕組みを整えます。', '## 背景
 地方ではバスの減便が進み、通学に片道2時間かかる例もあります。
 
 ## 提案
 - 地域交通の運行費への国の支援拡充
 - デマンド交通の導入支援
-- 学生定期の割引拡大', (select id from public.tags where name = '地方創生'), '2026-08-19T10:00:00.000Z') on conflict (id) do nothing;
-insert into public.policy_drafts (id, slug, title, summary, body, tag_id, published_at) values ('00000000-0000-4000-8000-000000000303', 'education-equality', '教育の機会均等に関する政策ドラフト', '家庭の経済状況に関わらず学び続けられるよう、学費と奨学金制度を見直します。', '## 提案
+- 学生定期の割引拡大', null, (select id from public.tags where name = '地方創生'), '2026-08-19T10:00:00.000Z') on conflict (id) do nothing;
+insert into public.policy_drafts (id, slug, title, summary, body, image_url, tag_id, published_at) values ('00000000-0000-4000-8000-000000000303', 'education-equality', '教育の機会均等に関する政策ドラフト', '家庭の経済状況に関わらず学び続けられるよう、学費と奨学金制度を見直します。', '## 提案
 - 大学授業料の段階的な負担軽減
 - 所得連動型奨学金返還の対象拡大
-- 学び直し(リカレント教育)の無償化', (select id from public.tags where name = '教育・子育て'), '2026-08-17T10:00:00.000Z') on conflict (id) do nothing;
-insert into public.policy_drafts (id, slug, title, summary, body, tag_id, published_at) values ('00000000-0000-4000-8000-000000000304', 'renewable-energy', '再生可能エネルギーの普及に関する政策ドラフト', '地域に仕事を生む再生可能エネルギーの導入を、若い世代の雇用とセットで進めます。', '## 提案
+- 学び直し(リカレント教育)の無償化', null, (select id from public.tags where name = '教育・子育て'), '2026-08-17T10:00:00.000Z') on conflict (id) do nothing;
+insert into public.policy_drafts (id, slug, title, summary, body, image_url, tag_id, published_at) values ('00000000-0000-4000-8000-000000000304', 'renewable-energy', '再生可能エネルギーの普及に関する政策ドラフト', '地域に仕事を生む再生可能エネルギーの導入を、若い世代の雇用とセットで進めます。', '## 提案
 - 地域主導の再エネ事業への出資支援
 - 再エネ関連の職業訓練の無償化
-- 送電網の整備前倒し', (select id from public.tags where name = '環境・エネルギー'), '2026-08-14T10:00:00.000Z') on conflict (id) do nothing;
+- 送電網の整備前倒し', null, (select id from public.tags where name = '環境・エネルギー'), '2026-08-14T10:00:00.000Z') on conflict (id) do nothing;
 
 insert into public.notices (id, title, body, published_at) values ('00000000-0000-4000-8000-000000000401', '「政策ドラフト」ベータ版を公開しました', '市民の声を政策につなぐプラットフォーム「政策ドラフト」のベータ版を公開しました。ご意見は目安箱からお寄せください。', '2026-09-16T10:00:00.000Z') on conflict (id) do nothing;
 insert into public.notices (id, title, body, published_at) values ('00000000-0000-4000-8000-000000000402', '政治家ユーザーの受付を開始しました', '政治家の方の公式アカウント登録の受付を開始しました。プロフィールの掲載は運営が代理で行います。', '2026-09-21T10:00:00.000Z') on conflict (id) do nothing;

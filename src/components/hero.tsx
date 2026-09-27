@@ -1,10 +1,11 @@
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
 import { TagIcon } from "@/components/tag-icon";
+import { SITE_IMAGES } from "@/lib/site-images";
 import { cn } from "@/lib/utils";
 
-/** ヒーロー背景。public/ に写真を置いてパスを変えれば差し替えられる */
-const HERO_BACKGROUND = "/hero-city.svg";
+/** ヒーロー背景。OpenAI で生成した画像(npm run images:generate)があればそれを使い、なければ仮のイラスト */
+const HERO_BACKGROUND = SITE_IMAGES.hero ?? "/hero-city.svg";
 
 type Voice = { category: string; iconTag: string; body: string; who: string; tag: string };
 
